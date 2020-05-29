@@ -1,9 +1,8 @@
 #container {
   text-align: center;
-
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 0%;
+  right: 0%;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -12,7 +11,9 @@
   font-size: 20px;
   line-height: 26px;
 }
-
+ion-content{
+  --background: url('../../assets/2.jpg') 0 0/100% 100% no-repeat
+}
 #container p {
   font-size: 16px;
   line-height: 22px;
@@ -21,7 +22,17 @@
 
   margin: 0;
 }
+.bg-image {
+  background: url('../../assets/2.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
 
 #container a {
   text-decoration: none;
+}
+
+ion-toolbar {--background: transparent;--ion-color-base: transparent !important;}
+/* Without setting height the slides will take up the height of the slide's content */
+ion-slides {
+  height: 100%;
 }

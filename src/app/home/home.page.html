@@ -1,19 +1,73 @@
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">      Langar for Hunger</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header class="ion-no-border" >
+    <ion-toolbar  >
+      <ion-buttons slot="end">
+           <ion-button primary color="success">Subscribe</ion-button>
+           <ion-button primary class = "button icon ion-navicon"></ion-button>
+      </ion-buttons>
+      </ion-toolbar>  
+</ion-header>
 
+<ion-content class="bg-image no-scroll" fullscreen="true">
+  <ion-slides  [options]="slideOpts" >
+  <ion-slide *ngFor="let s of sliderOne.slidesItems">
+
+    <img src="../../assets/{{s.id}}.jpg">
+     </ion-slide>
+  </ion-slides>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-title>
+           About Us<br>
+            <ion-button  color="success">Subscribe</ion-button>
+          </ion-title>
+        </div>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>
+
+ <!-- 
+<ion-content class="background" [fullscreen]="true">
   <div id="container">
-    <ion-toolbar>
-      <ion-title>
-        Langar for Hunger<br>
-        <ion-button  color="success">Click to Subscribe</ion-button>
-      </ion-title>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-title>
+              Langar for Hunger<br>
+              <ion-button  color="success">Subscribe</ion-button>
+            </ion-title>
+          </div>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  <ion-toolbar>
+
     </ion-toolbar>
     <strong>Ready to create an app?</strong>
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
   </div>
 </ion-content>
+  -->
