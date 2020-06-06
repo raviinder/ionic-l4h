@@ -18,12 +18,17 @@ export class MenuPage implements OnInit {
       icon:'home'
     },
     {
-      title:'Home',
-      url:'/menu/main',
+      title:'Login',
+      url:'/menu/login',
       icon:'home'
     },
     {
       title:'Events',
+      url:'/menu/events',
+      icon:'home'
+    },
+    {
+      title:'SubChildTest',
       children:[
         {
           title:'Login-Ravi',

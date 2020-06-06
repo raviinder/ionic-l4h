@@ -6,7 +6,7 @@ import { MenuPage } from './menu.page';
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'/menu/main',
+    redirectTo:'/menu/home',
     pathMatch:'full'
 
   },
@@ -15,7 +15,7 @@ const routes: Routes = [
     component: MenuPage,
     children:[
       {
-        path: 'main',
+        path: 'home',
         loadChildren: () => import('../home/home.module').then( m => m.HomePageModule)
       },
       {
