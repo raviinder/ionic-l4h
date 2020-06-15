@@ -15,7 +15,6 @@ export class LoginPage implements OnInit {
   errorMessage: string = '';
 
   constructor(
-
     private navCtrl: NavController,
     private authService: AuthenticateService,
     private formBuilder: FormBuilder
@@ -96,5 +95,4 @@ export class LoginPage implements OnInit {
         this.errorMessage = err.message;
       });
   }
-
 }

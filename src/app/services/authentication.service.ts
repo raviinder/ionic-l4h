@@ -50,7 +50,7 @@ export class AuthenticateService {
     return this.afAuth.user
   }
 
-  async  loginWithGoogle() {
+  async loginWithGoogle() {
     return await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider())
   }
 }

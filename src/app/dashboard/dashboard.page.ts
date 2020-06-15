@@ -36,7 +36,7 @@ export class DashboardPage implements OnInit {
     this.authService.logoutUser()
       .then(res => {
         console.log(res);
-        this.navCtrl.navigateBack('');
+        this.navCtrl.navigateBack('/home');
       })
       .catch(error => {
         console.log(error);
