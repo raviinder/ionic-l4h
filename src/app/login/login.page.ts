@@ -86,4 +86,15 @@ export class LoginPage implements OnInit {
     this.navCtrl.navigateForward('/register');
   }
 
+  googleLogin() {
+    this.authService.loginWithGoogle()
+      .then(res => {
+        console.log(res);
+        this.errorMessage = "";
+        this.navCtrl.navigateForward('/dashboard');
+      }, err => {
+        this.errorMessage = err.message;
+      });
+  }
+
 }

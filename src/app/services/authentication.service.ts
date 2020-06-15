@@ -1,6 +1,7 @@
 // authentication.service.ts
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,9 @@ export class AuthenticateService {
 
   userDetails() {
     return this.afAuth.user
+  }
+
+  async  loginWithGoogle() {
+    return await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider())
   }
 }

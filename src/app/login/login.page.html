@@ -8,8 +8,6 @@
     <ion-title>ionic</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
   <ion-content class="ion-padding">
     <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
   
@@ -46,5 +44,5 @@
     <p class="go-to-register">
       No account yet? <a (click)="goToRegisterPage()">Create an account.</a>
     </p>
-  </ion-content>
+    <ion-button (click)="googleLogin()" style="cursor: pointer;">Sign In With Google</ion-button>
 </ion-content>
