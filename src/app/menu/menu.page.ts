@@ -15,20 +15,20 @@ export class MenuPage implements OnInit {
     {
       title:'Home',
       url:'/menu/home',
-      icon:'home-outline'
+      icon:'home'
     },
     {
       title:'Login',
       url:'/menu/login',
-      icon:'person-outline'
+      icon:'person'
     },
     {
       title:'Events',
       url:'/menu/events',
-      icon:'calendar-outline'
+      icon:'calendar'
     },
     {
-      title:'SubChildTest',
+      title:'Child',
       children:[
         {
           title:'Login-Ravi',

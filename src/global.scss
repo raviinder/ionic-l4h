@@ -32,3 +32,10 @@ ion-content {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+ion-menu{
+    --background: #FFFFFF; 
+       ion-content{            
+           --background: #FFFFFF; 
+       }
+   }
