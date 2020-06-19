@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 
+
 const slideOpts = {
   on: {
     beforeInit() {
@@ -68,10 +69,10 @@ const slideOpts = {
 export class HomePage {
   sliderOne: any;
   
-  constructor() {
-   //Item object for Nature
+  constructor(
    
-   this.sliderOne =
+  ) {
+    this.sliderOne =
    {
      isBeginningSlide: true,
      isEndSlide: false,
@@ -136,5 +137,5 @@ export class HomePage {
       object.isEndSlide = istrue;
     });
   }
-
 }
+

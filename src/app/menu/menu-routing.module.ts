@@ -25,6 +25,14 @@ const routes: Routes = [
       {
         path: 'events',
         loadChildren: () => import('../events/events.module').then( m => m.EventsPageModule)
+      },
+      {
+        path: 'register',
+        loadChildren: () => import('../register/register.module').then( m => m.RegisterPageModule)
+      },
+      {
+        path: 'contactus',
+        loadChildren: () => import('../contactus/contactus.module').then( m => m.ContactusPageModule)
       }
 
     ]

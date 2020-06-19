@@ -13,7 +13,7 @@
 <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
   <ion-grid>
     <ion-row>
-      <ion-col>
+      <ion-col size="4" offset="4">
         <div class="input">
           <ion-item  color="transparent">
             <ion-label position="floating" color="primary">Email</ion-label>
@@ -21,7 +21,9 @@
           </ion-item>
         </div>
       </ion-col>
-      <ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4" offset="4">
         <div class="input">
           <ion-item  color="transparent">
             <ion-label position="floating" color="primary">Password</ion-label>
@@ -34,7 +36,7 @@
   
   <ion-grid>
     <ion-row>
-      <ion-col>
+      <ion-col size="4" offset="4" class="ion-text-center"> 
         <div class="validation-errors">
           <ng-container *ngFor="let validation of validation_messages.email">
           <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
@@ -43,7 +45,9 @@
           </ng-container>
         </div>
       </ion-col>
-      <ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4" offset="4" class="ion-text-center">
         <div class="validation-errors">
           <ng-container *ngFor="let validation of validation_messages.password">
           <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
@@ -53,7 +57,7 @@
         </div>
       </ion-col>
     </ion-row>
-  </ion-grid>  
+  </ion-grid>
 
   <ion-grid>
     <ion-row>
@@ -71,8 +75,4 @@
   <ion-button (click)="goToRegisterPage()">Register Now</ion-button>
 </p>
 <label class="error-message">{{ errorMessage }} </label>
-
-
-
-
 </ion-content>

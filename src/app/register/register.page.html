@@ -1,5 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>
     <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -65,7 +69,10 @@
     <ion-grid>
       <ion-row>
         <ion-col class="ion-text-center">
-          <p class="go-to-login">Already have an account?<br> <ion-button (click)="goLoginPage()">Try to Log In.</ion-button></p>
+          <p class="go-to-login">Already have an account?<br> 
+            <ion-button (click)="goLoginPage()">Try to Log In.
+              <ion-icon slot="start" name="arrow-back-outline"></ion-icon>       
+         </ion-button></p>
         </ion-col>
       </ion-row>
     </ion-grid>

@@ -1,4 +1,3 @@
-// login.page.ts
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
@@ -13,6 +12,7 @@ export class LoginPage implements OnInit {
 
   validations_form: FormGroup;
   errorMessage: string = '';
+  successMessage: string = '';
 
   constructor(
     private navCtrl: NavController,
@@ -34,8 +34,7 @@ export class LoginPage implements OnInit {
       ])),
     });
   }
-
-
+  
   validation_messages = {
     'email': [
       { type: 'required', message: 'Email is required.' },
@@ -58,31 +57,9 @@ export class LoginPage implements OnInit {
         this.errorMessage = err.message;
       })
   }
-  pages =[
-    {
-      title:'Main',
-      url:'/menu/main',
-      icon:'home'
-    },
-    {
-      title:'Cool Frameworks',
-      children:[
-        {
-          title:'Ionic',
-          url:'/menu/ionic',
-          icon:'logo-ionic'
-        },
-        {
-          title:'Flutter',
-          url:'/menu/flutter',
-          icon:'logo-google'
-        }
-      ]
-    }
-  ]
 
   goToRegisterPage() {
-    this.navCtrl.navigateForward('/register');
+    this.navCtrl.navigateForward('/menu/register');
   }
 
   googleLogin() {
