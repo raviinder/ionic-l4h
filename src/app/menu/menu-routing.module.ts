@@ -33,6 +33,10 @@ const routes: Routes = [
       {
         path: 'contactus',
         loadChildren: () => import('../contactus/contactus.module').then( m => m.ContactusPageModule)
+      },
+      {
+        path: 'donate',
+        loadChildren: () => import('../donate/donate.module').then( m => m.DonatePageModule)
       }
 
     ]

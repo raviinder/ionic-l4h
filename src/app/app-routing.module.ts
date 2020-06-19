@@ -16,7 +16,8 @@ const routes: Routes = [
   {path: 'dashboard',  loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)},
   {path: 'events', loadChildren: () => import('./events/events.module').then( m => m.EventsPageModule)},
   {path: 'login',  loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)},
-  {path: 'contactus', loadChildren: () => import('./contactus/contactus.module').then( m => m.ContactusPageModule)}
+  {path: 'contactus', loadChildren: () => import('./contactus/contactus.module').then( m => m.ContactusPageModule)},
+  {path: 'donate', loadChildren: () => import('./donate/donate.module').then( m => m.DonatePageModule)}
 ]
 @NgModule({
   imports: [

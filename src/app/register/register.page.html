@@ -17,13 +17,15 @@
         <ion-row>
           <ion-col>
             <ion-item color="transparent">
-              <ion-label position="floating" color="primary">Email</ion-label>
+              <ion-label position="floating" color="light">Email</ion-label>
               <ion-input color="light" type="text" formControlName="email"></ion-input>
             </ion-item>
           </ion-col>
+        </ion-row>
+        <ion-row>
           <ion-col>
             <ion-item color="transparent">
-              <ion-label position="floating" color="primary">Password</ion-label>
+              <ion-label position="floating" color="light">Password</ion-label>
               <ion-input color="light" type="password" formControlName="password" class="form-controll" required></ion-input>
             </ion-item>
           </ion-col>
@@ -41,8 +43,9 @@
                 </div>
               </ng-container>
             </div>
-        
           </ion-col>
+        </ion-row>
+        <ion-row>
           <ion-col>
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.password">
@@ -51,11 +54,11 @@
                   {{ validation.message }}
                 </div>
               </ng-container>
-            </div>
+              </div>
           </ion-col>
         </ion-row>
       </ion-grid>
-     <ion-grid>
+       <ion-grid>
        <ion-row>
          <ion-col class="ion-text-center">
           <ion-button class="submit-btn" type="submit" [disabled]="!validations_form.valid">Register</ion-button>
