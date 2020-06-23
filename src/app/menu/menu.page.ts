@@ -16,11 +16,6 @@ export class MenuPage implements OnInit {
     { title:'Events', url:'/menu/events', icon:'calendar' },
     { title:'Contact Us', url:'/menu/contactus', icon:'call'},
     { title:'Donate', url:'/menu/donate', icon:'cash-outline'},
-    { title:'My Account',
-      children:[
-        { title:'Login', url:'/menu/login', icon:'person'},
-        { title:'Register', url:'/menu/register', icon:'logo-google'},
-      ]
-    }
+    { title:'Login', url:'/menu/login', icon:'person'}
   ]
 }

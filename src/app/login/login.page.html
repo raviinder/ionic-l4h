@@ -9,15 +9,15 @@
 </ion-header>
   
 <ion-content class="ion-padding">
-
-<form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
-  <ion-grid >
+  <h1 class="ion-text-center"> Log in to your account</h1>
+  <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
+      <ion-grid >
     <ion-row>
       <ion-col>
         <div class="input">
-          <ion-item  color="transparent">
-            <ion-label position="floating" color="light">Email</ion-label>
-            <ion-input color="light" type="text" formControlName="email"></ion-input>
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input type="text" formControlName="email"></ion-input>
           </ion-item>
         </div>
       </ion-col>
@@ -25,9 +25,9 @@
     <ion-row>
       <ion-col>
         <div class="input">
-          <ion-item  color="transparent">
-            <ion-label position="floating" color="light">Password</ion-label>
-            <ion-input color="light" type="password" formControlName="password" class="form-controll" required></ion-input>
+          <ion-item>
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
         </ion-item>
         </div>
       </ion-col>
@@ -62,17 +62,22 @@
   <ion-grid>
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button class="submit-btn" type="submit" [disabled]="!validations_form.valid">Log In</ion-button>
+        <ion-button shape="round" class="submit-btn" type="submit" [disabled]="!validations_form.valid">Log In</ion-button>
       </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button class="submit-btn" fill="solid" (click)="googleLogin()"><ion-icon slot="start" name="logo-google"></ion-icon>Sign In With Google</ion-button>
+        <ion-button shape="round" class="submit-btn" fill="solid" (click)="googleLogin()"><ion-icon slot="start" name="logo-google"></ion-icon>Sign In With Google</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
-</form>
 <p class="go-to-register">
-  No account yet? <br>
-  <ion-button (click)="goToRegisterPage()">Register Now</ion-button>
+ 
+  <a style="cursor: pointer;" (click)="openRegisterModal()">Sign Up</a>
+  |
+<a style="cursor: pointer;">Forgot Password</a>
 </p>
 <label class="error-message">{{ errorMessage }} </label>
+</form>
+
 </ion-content>
