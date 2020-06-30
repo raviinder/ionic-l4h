@@ -9,6 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { switchMap, filter } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
 import { UserFormService } from '../services/user-form.service';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +26,7 @@ export class RegisterPage implements OnInit {
   successMessage: string = '';
 
   constructor(
+    public modalCtrl: ModalController,
     private navCtrl: NavController,
     private authService: AuthenticateService,
     private formBuilder: FormBuilder,
@@ -100,6 +102,7 @@ export class RegisterPage implements OnInit {
   goLoginPage() {
     this.navCtrl.navigateBack('/menu/login');
   }
-
-
+  dismiss(){
+    this.modalCtrl.dismiss();
+  }
 }

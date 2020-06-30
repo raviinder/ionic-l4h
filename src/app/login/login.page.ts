@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authentication.service';
+import { ModalController } from '@ionic/angular';
+import { RegisterPage } from '../register/register.page';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,7 @@ export class LoginPage implements OnInit {
   successMessage: string = '';
 
   constructor(
+    public modalCtrl: ModalController,
     private navCtrl: NavController,
     private authService: AuthenticateService,
     private formBuilder: FormBuilder
@@ -46,8 +49,7 @@ export class LoginPage implements OnInit {
       { type: 'minlength', message: 'Password must be at least 5 characters long.' }
     ]
   };
-
-
+  
   loginUser(value) {
     this.authService.loginUser(value)
       .then(res => {
@@ -59,9 +61,9 @@ export class LoginPage implements OnInit {
       })
   }
 
-  goToRegisterPage() {
-    this.navCtrl.navigateForward('/menu/register');
-  }
+  // goToRegisterPage() {
+  //   this.navCtrl.navigateForward('/menu/register');
+  // }
 
   googleLogin() {
     this.authService.loginWithGoogle()
@@ -73,4 +75,10 @@ export class LoginPage implements OnInit {
         this.errorMessage = err.message;
       });
   }
+
+  async openRegisterModal(){
+    var registerPage = this.modalCtrl.create({component: RegisterPage});
+    return (await registerPage).present();
+  }
+
 }

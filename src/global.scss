@@ -25,17 +25,17 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-ion-content {
-    --background: none;
-    background-image: url('/assets/2.jpg');
-    background-position: center fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+// ion-content {
+//     --background: none;
+//     background-image: url('/assets/2.jpg');
+//     background-position: center fixed;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+// }
 
-ion-menu{
-    --background: #FFFFFF; 
-       ion-content{            
-           --background: #FFFFFF; 
-       }
-   }
+// ion-menu{
+//     --background: #FFFFFF; 
+//        ion-content{            
+//            --background: #FFFFFF; 
+//        }
+//    }
