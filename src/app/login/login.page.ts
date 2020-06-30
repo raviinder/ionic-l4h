@@ -1,9 +1,15 @@
+import { User } from './../models/user';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authentication.service';
 import { ModalController } from '@ionic/angular';
 import { RegisterPage } from '../register/register.page';
+import { filter, switchMap } from 'rxjs/operators';
+import { UserService } from '../services/user.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
+import { UserFormService } from '../services/user-form.service';
 
 @Component({
   selector: 'app-login',
@@ -15,16 +21,23 @@ export class LoginPage implements OnInit {
   validations_form: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
+  user$: Observable<User>;
+ 
 
   constructor(
     public modalCtrl: ModalController,
     private navCtrl: NavController,
     private authService: AuthenticateService,
-    private formBuilder: FormBuilder
-
+    private userService: UserService,
+    private formBuilder: FormBuilder,
+    private afAuth: AngularFireAuth,
+    private userForm: UserFormService,
   ) { }
 
   ngOnInit() {
+    this.user$ = this.afAuth.user.pipe(
+      filter(user => !!user),
+      switchMap(user => this.userService.user$(user.uid)))
 
     this.validations_form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
@@ -51,11 +64,20 @@ export class LoginPage implements OnInit {
   };
   
   loginUser(value) {
+    this.userForm.create();
     this.authService.loginUser(value)
       .then(res => {
-        console.log(res);
         this.errorMessage = "";
-        this.navCtrl.navigateForward('/dashboard');
+        // Login is successfull, will send GET /myrole user to figure out if User is of Which kind of role. 
+          this.user$.subscribe(result => {
+            this.userForm.edit(result);
+            console.log('User has been logged in with role',result.role);
+            this.navCtrl.navigateForward('/dashboard');
+          },error => {
+            console.log(error);
+
+          });
+
       }, err => {
         this.errorMessage = err.message;
       })

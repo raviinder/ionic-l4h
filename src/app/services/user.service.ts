@@ -30,6 +30,8 @@ export class UserService {
 
   user$(id: string): Observable<User> {
     return this.http.get<{ user: User }>(`${this.baseUrl}/${id}`).pipe(
+      retry(1),
+      catchError(this.handleError),
       map(result => {
         return result.user;
       })

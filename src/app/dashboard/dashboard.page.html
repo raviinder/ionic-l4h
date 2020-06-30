@@ -1,10 +1,11 @@
-<ion-header>
+
+<ion-header  *ngIf="user$ | async; let user">
   <ion-toolbar >
-    <ion-title>Welcome, {{ userEmail }}</ion-title>
+    <ion-title >Welcome, {{user.email}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content  *ngIf="user$ | async; let user" class="ion-padding">
   <ion-grid>
     <ion-row>
       <ion-col class="ion-text-center">
@@ -13,7 +14,8 @@
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-center">
-        Your Registered EmailID : {{ userEmail }}
+        Your Registered EmailID : {{user.email}}
+        Your Role is : {{user.role}}
       </ion-col>
     </ion-row>
   </ion-grid>

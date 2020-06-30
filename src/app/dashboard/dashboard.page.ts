@@ -1,7 +1,11 @@
+import { UserFormService } from './../services/user-form.service';
 // dashboard.page.ts
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authentication.service';
+import { Observable } from 'rxjs/internal/Observable';
+import { User } from '../models/user';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,24 +15,35 @@ import { AuthenticateService } from '../services/authentication.service';
 export class DashboardPage implements OnInit {
 
   userEmail: string;
-
+  user$: Observable<{}>;
+  
   constructor(
     private navCtrl: NavController,
-    private authService: AuthenticateService
+    private authService: AuthenticateService,
+    private userForm:UserFormService
   ) { }
 
   ngOnInit() {
 
-    this.authService.userDetails().subscribe(res => {
-      console.log('res', res);
-      if (res !== null) {
-        this.userEmail = res.email;
-      } else {
-        this.navCtrl.navigateBack('');
-      }
-    }, err => {
-      console.log('err', err);
-    })
+    this.user$ = this.userForm.user$.pipe(
+      tap(user => {
+        if (user) {
+          //this.form.patchValue(user);
+        } else {
+          //this.form.reset({});
+        }
+      })
+    );
+ //   this.authService.userDetails().subscribe(res => {
+   //   console.log('Dashboard res', res);
+     // if (res !== null) {
+    //    this.userEmail = res.email;
+     // } else {
+     //   this.navCtrl.navigateBack('');
+     // }
+      //}, err => {
+      //  console.log('err', err);
+    //})
 
   }
 
