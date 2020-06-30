@@ -37,8 +37,7 @@ const routes: Routes = [
       {
         path: 'donate',
         loadChildren: () => import('../donate/donate.module').then( m => m.DonatePageModule)
-      }
-
+      },
     ]
   }
 ];

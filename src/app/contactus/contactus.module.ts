@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ContactusPageRoutingModule } from './contactus-routing.module';
 
 import { ContactusPage } from './contactus.page';
+import { HeaderComponent } from '../header/header.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { ContactusPage } from './contactus.page';
     IonicModule,
     ContactusPageRoutingModule
   ],
-  declarations: [ContactusPage]
+  declarations: [ContactusPage, HeaderComponent]
 })
 export class ContactusPageModule {}

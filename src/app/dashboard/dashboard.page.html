@@ -4,6 +4,7 @@
     <ion-title >Welcome, {{user.email}}</ion-title>
   </ion-toolbar>
 </ion-header>
+<app-header></app-header> 
 
 <ion-content  *ngIf="user$ | async; let user" class="ion-padding">
   <ion-grid>
