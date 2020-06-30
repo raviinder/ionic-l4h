@@ -49,7 +49,9 @@ export class AuthenticateService {
   userDetails() {
     return this.afAuth.user
   }
-
+   userRole(){
+     return this.afAuth;
+   }
   async loginWithGoogle() {
     return await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider())
   }

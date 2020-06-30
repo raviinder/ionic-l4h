@@ -32,6 +32,7 @@ export class LoginPage implements OnInit {
         Validators.minLength(5),
         Validators.required
       ])),
+      role:'user'
     });
   }
   

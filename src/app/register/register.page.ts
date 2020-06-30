@@ -3,6 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthenticateService } from '../services/authentication.service';
 import { NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { User } from '../models/user';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { switchMap, filter } from 'rxjs/operators';
+import { UserService } from '../services/user.service';
+import { UserFormService } from '../services/user-form.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +17,9 @@ import { NavController } from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
 
-
+  users$: Observable<User[]>;
+  user$: Observable<User>;
+  
   validations_form: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
@@ -19,20 +27,34 @@ export class RegisterPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private authService: AuthenticateService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private userForm: UserFormService,
+    private afAuth: AngularFireAuth
   ) { }
   
   ngOnInit() {
     this.validations_form = this.formBuilder.group({
-      email: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])),
+      displayName:'RAVITESTUSER',
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
         Validators.required
       ])),
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      role:'user'
     });
+
+    this.users$ = this.userService.users$;
+
+    this.user$ = this.afAuth.user.pipe(
+      filter(user => !!user),
+      switchMap(user => this.userService.user$(user.uid))
+    );
+
+
   }
 
 
@@ -47,9 +69,6 @@ export class RegisterPage implements OnInit {
     ]
   };
 
-  
-
-  
   tryRegister(value) {
     this.authService.registerUser(value)
       .then(res => {
@@ -61,6 +80,21 @@ export class RegisterPage implements OnInit {
         this.errorMessage = err.message;
         this.successMessage = "";
       })
+  }
+
+  create(value) {
+      this.userService.create(value).subscribe(_ => {
+        console.log('Your account has been created. Please log in.');
+        this.errorMessage = "";
+        this.successMessage = "Your account has been created. Please log in.";
+        // Clear Values of email & password after successfull creation of  
+        this.validations_form
+      },error => {
+        console.log(error);
+        this.errorMessage = error;
+        this.successMessage = "";
+      });
+  
   }
 
   goLoginPage() {
