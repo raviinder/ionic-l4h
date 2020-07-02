@@ -72,7 +72,7 @@ export class LoginPage implements OnInit {
           this.user$.subscribe(result => {
             this.userForm.edit(result);
             console.log('User has been logged in with role',result.role);
-            this.navCtrl.navigateForward('/dashboard');
+            this.navCtrl.navigateForward('/menu/dashboard');
           },error => {
             console.log(error);
 

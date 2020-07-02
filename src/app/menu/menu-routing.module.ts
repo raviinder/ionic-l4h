@@ -38,6 +38,11 @@ const routes: Routes = [
         path: 'donate',
         loadChildren: () => import('../donate/donate.module').then( m => m.DonatePageModule)
       },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('../dashboard/dashboard.module').then( m => m.DashboardPageModule)
+      },
+     
     ]
   }
 ];

@@ -1,21 +1,20 @@
-
-<ion-header  *ngIf="user$ | async; let user">
-  <ion-toolbar >
-    <ion-title >Welcome, {{user.email}}</ion-title>
-  </ion-toolbar>
-</ion-header>
-<app-header></app-header> 
+<app-header></app-header>
 
 <ion-content  *ngIf="user$ | async; let user" class="ion-padding">
+  <br>
+  <br>
   <ion-grid>
     <ion-row>
       <ion-col class="ion-text-center">
-        Welcome to Dashboard!
+        <h1>
+          Welcome to Dashboard <hr> {{user.email}}
+        </h1>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-center">
         Your Registered EmailID : {{user.email}}
+        <hr>
         Your Role is : {{user.role}}
       </ion-col>
     </ion-row>
