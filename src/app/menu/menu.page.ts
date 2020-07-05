@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs/operators';
+import { UserFormService } from '../services/user-form.service';
+import { AuthenticateService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+  isLoggedUser: boolean;
 
-  constructor() { }
+  constructor(
+    private authService: AuthenticateService,
+    private userForm:UserFormService
+  ) { }
 
   ngOnInit() {
+    this.userForm.isLoggedUser$.pipe(
+      tap(value => {
+        this.isLoggedUser = value
+        if (value) {
+          console.log(value)
+         
+        } else {
+         }
+      })
+    );
+
   }
   pages =[
     { title:'Home', url:'/menu/home', icon:'home' },
@@ -18,4 +36,24 @@ export class MenuPage implements OnInit {
     { title:'Donate', url:'/menu/donate', icon:'cash-outline'},
     { title:'Login', url:'/menu/login', icon:'person'},   
    ]
+   pageswithoutLogin =[
+    { title:'Home', url:'/menu/home', icon:'home' },
+    { title:'Events', url:'/menu/events', icon:'calendar' },
+    { title:'Contact Us', url:'/menu/contactus', icon:'call'},
+    { title:'Donate', url:'/menu/donate', icon:'cash-outline'},
+   ]
+  filterpages()
+  {
+    this.userForm.isLoggedUser$.subscribe(isLoggedUser=>
+      {
+        this.isLoggedUser = isLoggedUser
+      })
+    console.log('Is user logged in ',this.isLoggedUser)
+    if (!this.isLoggedUser)
+      return this.pages
+    else 
+     return this.pageswithoutLogin
+    
+  }
+
 }

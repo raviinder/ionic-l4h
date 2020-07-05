@@ -7,16 +7,19 @@ import { map } from 'rxjs/operators';
 })
 export class UserFormService {
 
-  _BS = new BehaviorSubject({ title: '', user: {} });
+  _BS = new BehaviorSubject({ title: 'RaviTest', user: {},isLogged:false});
 
   constructor() { }
 
   edit(user) {
-    this._BS.next({ title: 'Edit User', user });
+    this._BS.next({ title: 'Edit User', user, isLogged:true });
   }
 
   create() {
-    this._BS.next({ title: 'Create User', user: null });
+    this._BS.next({ title: 'Create User', user: null,isLogged:false });
+  }
+  logout() {
+    this._BS.next({ title: 'Logout User', user: null,isLogged:false });
   }
 
   get title$() {
@@ -24,7 +27,12 @@ export class UserFormService {
       map(uf => uf.title)
     );
   }
-
+  get isLoggedUser$()
+  {
+    return this._BS.asObservable().pipe(
+      map(uf => uf.isLogged)
+    );
+  }
   get user$() {
     return this._BS.asObservable().pipe(
       map(uf => uf.user)

@@ -28,9 +28,7 @@ export class DashboardPage implements OnInit {
     this.user$ = this.userForm.user$.pipe(
       tap(user => {
         if (user) {
-          //this.form.patchValue(user);
         } else {
-          //this.form.reset({});
         }
       })
     );
@@ -52,6 +50,7 @@ export class DashboardPage implements OnInit {
       .then(res => {
         console.log(res);
         this.navCtrl.navigateBack('');
+        this.userForm.logout()
       })
       .catch(error => {
         console.log(error);
