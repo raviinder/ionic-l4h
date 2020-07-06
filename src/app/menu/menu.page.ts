@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class MenuPage implements OnInit {
   isLoggedUser: boolean;
   isLgdUser$: Observable<boolean>;
+  
   constructor(
     private authService: AuthenticateService,
     private userForm:UserFormService
@@ -21,12 +22,7 @@ export class MenuPage implements OnInit {
     this.isLgdUser$ = this.userForm.isLoggedUser$.pipe(
       tap(value => {
         this.isLoggedUser = value
-        if (value) {
-          console.log(value)
-         
-        } else {
-         }
-      })
+        })
     );
 
   }
@@ -38,12 +34,15 @@ export class MenuPage implements OnInit {
     { title:'Admin', url:'/menu/admin', icon:'cash-outline'},
     { title:'Login', url:'/menu/login', icon:'person'},   
    ]
+   /*
+   code is not used but please dont delete this code it is refrence code for many things in code. 
    pageswithoutLogin =[
     { title:'Home', url:'/menu/home', icon:'home' },
     { title:'Events', url:'/menu/events', icon:'calendar' },
     { title:'Contact Us', url:'/menu/contactus', icon:'call'},
     { title:'Donate', url:'/menu/donate', icon:'cash-outline'},
    ]
+   
   filterpages()
   {
     this.userForm.isLoggedUser$.subscribe(isLoggedUser=>
@@ -58,5 +57,5 @@ export class MenuPage implements OnInit {
   
    return this.pages  
   }
-
+*/
 }
