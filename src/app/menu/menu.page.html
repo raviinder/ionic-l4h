@@ -1,13 +1,14 @@
-<ion-menu contentId="home" type="push">
+<ion-menu  contentId="home" type="push">
     <ion-header>
         <ion-toolbar color="Primary">
             <ion-title>Menu</ion-title>
         </ion-toolbar>
     </ion-header>
 
-    <ion-content  >
-            <ng-container *ngFor="let p of filterpages()">
-                <ion-menu-toggle *ngIf="p.url">
+    <ion-content>
+        <div *ngFor="let p of pages">
+            <ng-container *ngLet="(isLgdUser$ | async) as isLoggedUser" >
+                <ion-menu-toggle *ngIf=" !(isLoggedUser && p.title == 'Login') ">
                     <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active">
                         <ion-icon [name]="p.icon" slot="start"></ion-icon>
                         <ion-label> {{p.title}}</ion-label>
@@ -30,6 +31,7 @@
                     </ion-menu-toggle>
                 </ion-list>
             </ng-container>
+            </div>
 
        
     </ion-content>

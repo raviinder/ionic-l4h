@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { UserFormService } from '../services/user-form.service';
 import { AuthenticateService } from '../services/authentication.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -10,14 +11,14 @@ import { AuthenticateService } from '../services/authentication.service';
 })
 export class MenuPage implements OnInit {
   isLoggedUser: boolean;
-
+  isLgdUser$: Observable<boolean>;
   constructor(
     private authService: AuthenticateService,
     private userForm:UserFormService
   ) { }
 
   ngOnInit() {
-    this.userForm.isLoggedUser$.pipe(
+    this.isLgdUser$ = this.userForm.isLoggedUser$.pipe(
       tap(value => {
         this.isLoggedUser = value
         if (value) {
@@ -34,6 +35,7 @@ export class MenuPage implements OnInit {
     { title:'Events', url:'/menu/events', icon:'calendar' },
     { title:'Contact Us', url:'/menu/contactus', icon:'call'},
     { title:'Donate', url:'/menu/donate', icon:'cash-outline'},
+    { title:'Admin', url:'/menu/admin', icon:'cash-outline'},
     { title:'Login', url:'/menu/login', icon:'person'},   
    ]
    pageswithoutLogin =[
@@ -53,7 +55,8 @@ export class MenuPage implements OnInit {
       return this.pages
     else 
      return this.pageswithoutLogin
-    
+  
+   return this.pages  
   }
 
 }
