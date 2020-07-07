@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<ion-content  *ngIf="user$ | async; let user" class="ion-padding">
+  <br>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <h1>
+          Welcome to Dashboard <hr> {{user.email}}
+        </h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        Your Registered EmailID : {{user.email}}
+        <hr>
+        Your Role is : {{user.role}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer (click)="logout()" style="cursor: pointer;">
+    <ion-toolbar color="secondary">
+      <ion-title>Log out</ion-title>
+      </ion-toolbar>
+</ion-footer>
