@@ -8,6 +8,7 @@ import { MenuPageRoutingModule } from './menu-routing.module';
 
 import { MenuPage } from './menu.page';
 import { NgLetModule } from '@ngrx-utils/store';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +17,7 @@ import { NgLetModule } from '@ngrx-utils/store';
     MenuPageRoutingModule,
     NgLetModule
   ],
-  declarations: [MenuPage]
+  declarations: [MenuPage],
 })
 export class MenuPageModule {}
 export class FeatureModule {}
