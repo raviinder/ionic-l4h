@@ -17,7 +17,6 @@ import { HeaderComponent } from '../header/header.component';
     DashboardPageRoutingModule
   ],
   declarations: [
-    DashboardPage, 
-    HeaderComponent]
+    DashboardPage]
 })
 export class DashboardPageModule {}

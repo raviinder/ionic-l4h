@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MenuPage } from './menu.page';
+import { AuthGuard } from '../services/auth-guard';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
       { path: 'contactus',loadChildren: () => import('../contactus/contactus.module').then( m => m.ContactusPageModule)},
       {path: 'donate',loadChildren: () => import('../donate/donate.module').then( m => m.DonatePageModule)},
       {path: 'admin',loadChildren: () => import('../admin/admin.module').then( m => m.AdminPageModule)},
-      {path: 'dashboard',loadChildren: () => import('../dashboard/dashboard.module').then( m => m.DashboardPageModule)},
+      {path: 'dashboard',loadChildren: () => import('../dashboard/dashboard.module').then( m => m.DashboardPageModule), canActivate: [AuthGuard]},
      
     ]
   }
