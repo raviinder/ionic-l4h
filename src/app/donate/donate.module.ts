@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { DonatePageRoutingModule } from './donate-routing.module';
 
 import { DonatePage } from './donate.page';
-import { HeaderComponent } from '../header/header.component';
 
 @NgModule({
   imports: [
@@ -16,8 +15,6 @@ import { HeaderComponent } from '../header/header.component';
     IonicModule,
     DonatePageRoutingModule
   ],
-  declarations: [DonatePage,
-    HeaderComponent
-  ]
+  declarations: [DonatePage]
 })
 export class DonatePageModule {}
