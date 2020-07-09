@@ -8,7 +8,6 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { HeaderModule } from '../header/header.module';
-import { HeaderComponent } from '../header/header.component';
 
 @NgModule({
   imports: [
