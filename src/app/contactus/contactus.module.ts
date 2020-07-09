@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ContactusPageRoutingModule } from './contactus-routing.module';
 
 import { ContactusPage } from './contactus.page';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ContactusPageRoutingModule
+    ContactusPageRoutingModule,
+    SharedModule
   ],
   declarations: [ContactusPage]
 })

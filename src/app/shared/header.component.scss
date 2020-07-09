@@ -1,0 +1,21 @@
+  
+.header{
+    position: fixed;
+    --background: transparent;
+    width: 100%;
+    z-index: 1;
+ 
+}
+
+.nav-btns{
+    width: 30%;
+    justify-content: space-around;
+}
+
+.logo{
+    letter-spacing: 5px;
+    a{
+        text-decoration: none;
+        color: black;
+    }
+}

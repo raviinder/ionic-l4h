@@ -14,6 +14,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthTokenHttpInterceptorService } from 'src/http-interceptors/auth-token-http-interceptor.service';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -27,6 +28,7 @@ import { AuthTokenHttpInterceptorService } from 'src/http-interceptors/auth-toke
     AngularFireAuthModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    SharedModule
   ],
   providers: [
     StatusBar,
