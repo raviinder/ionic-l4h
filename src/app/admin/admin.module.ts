@@ -8,16 +8,14 @@ import { AdminPageRoutingModule } from './admin-routing.module';
 
 import { AdminPage } from './admin.page';
 import { HeaderComponent } from '../header/header.component';
-import { HeaderModule } from '../header/header.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AdminPageRoutingModule,
-    HeaderModule
+    AdminPageRoutingModule
   ],
-  declarations: [AdminPage]
+  declarations: [AdminPage,HeaderComponent]
 })
 export class AdminPageModule {}

@@ -8,16 +8,16 @@ import { DonatePageRoutingModule } from './donate-routing.module';
 
 import { DonatePage } from './donate.page';
 import { HeaderComponent } from '../header/header.component';
-import { HeaderModule } from '../header/header.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DonatePageRoutingModule,
-    HeaderModule
+    DonatePageRoutingModule
   ],
-  declarations: [DonatePage]
+  declarations: [DonatePage,
+    HeaderComponent
+  ]
 })
 export class DonatePageModule {}

@@ -14,7 +14,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthTokenHttpInterceptorService } from 'src/http-interceptors/auth-token-http-interceptor.service';
-import { HeaderModule } from './header/header.module';
+
+
  
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,6 @@ import { HeaderModule } from './header/header.module';
     AngularFireAuthModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    HeaderModule
   ],
   providers: [
     StatusBar,
