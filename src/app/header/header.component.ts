@@ -12,14 +12,14 @@ export class HeaderComponent {
 
     }
 
-    // header_variable = false;
-    // @HostListener("document: scroll")
-    // scrollFunction(){
-    //   if(document.body.scrollTop > 0 || document.documentElement.scrollTop > 0){
-    //     this.header_variable = true;
-    //   }
-    //   else{
-    //     this.header_variable = false;
-    //   }
-    // }
+    header_variable = false;
+    @HostListener("document: scroll")
+    scrollFunction(){
+      if(document.body.scrollTop > 0 || document.documentElement.scrollTop > 0){
+        this.header_variable = true;
+      }
+      else{
+        this.header_variable = false;
+      }
+    }
 }
