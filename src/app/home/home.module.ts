@@ -4,7 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
-import { HeaderComponent } from '../header/header.component';
+import { HeaderModule } from '../header/header.module';
 
 
 
@@ -14,11 +14,10 @@ import { HeaderComponent } from '../header/header.component';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
+    HeaderModule
   ],
   declarations: [
     HomePage,
-    HeaderComponent
-    
-  ]
+   ]
 })
 export class HomePageModule {}

@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, NgModule } from '@angular/core';
 
 
 @Component({
@@ -6,11 +6,10 @@ import { Component, HostListener } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
+
 export class HeaderComponent {
 
-  constructor() {
-
-    }
+  constructor() {}
 
     // header_variable = false;
     // @HostListener("document: scroll")

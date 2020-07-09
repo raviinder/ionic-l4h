@@ -8,14 +8,16 @@ import { ContactusPageRoutingModule } from './contactus-routing.module';
 
 import { ContactusPage } from './contactus.page';
 import { HeaderComponent } from '../header/header.component';
+import { HeaderModule } from '../header/header.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ContactusPageRoutingModule
+    ContactusPageRoutingModule,
+    HeaderModule
   ],
-  declarations: [ContactusPage, HeaderComponent]
+  declarations: [ContactusPage]
 })
 export class ContactusPageModule {}
