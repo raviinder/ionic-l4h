@@ -35,7 +35,10 @@ export class AuthGuard implements CanActivate{
             })	
         if(this.isLoggedUser){	
            return true;	
+        }else{
+            alert("User not authenticated, Please sign in or register first")
+            return this.router.createUrlTree(['/menu/login']);	
+
         }	
-        return this.router.createUrlTree(['/menu/login']);	
     }	
 } 
