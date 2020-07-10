@@ -69,15 +69,15 @@ export class LoginPage implements OnInit {
       .then(res => {
         this.errorMessage = "";
         // Login is successfull, will send GET /myrole user to figure out if User is of Which kind of role. 
-          this.user$.subscribe(result => {
+        /*  this.user$.subscribe(result => {
             this.userForm.edit(result);
             console.log('User has been logged in with role',result.role);
-            this.navCtrl.navigateForward('/menu/dashboard');
+            
           },error => {
             console.log(error);
 
-          });
-
+          });*/
+          this.navCtrl.navigateForward('/menu/dashboard');
       }, err => {
         this.errorMessage = err.message;
       })

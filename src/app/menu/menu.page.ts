@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class MenuPage implements OnInit {
   isLoggedUser: boolean;
   isLgdUser$: Observable<boolean>;
-  
+  isAdmin:boolean;
   constructor(
     private authService: AuthenticateService,
     private userForm:UserFormService
@@ -24,6 +24,7 @@ export class MenuPage implements OnInit {
         this.isLoggedUser = value
         })
     );
+    this.isAdmin = this.userForm.isUserAdmin$;
 
   }
   pages =[

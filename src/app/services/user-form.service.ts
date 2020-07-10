@@ -1,6 +1,8 @@
+import {  Role } from './../models/user';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +39,18 @@ export class UserFormService {
     return this._BS.asObservable().pipe(
       map(uf => uf.user)
     );
+  }
+   get currentUserRole(): any {
+     let user:any = this._BS.value.user 
+     return user.role
+}
+  get isUserAdmin$() : boolean
+  {
+    let str:String = this.currentUserRole
+    if (str === 'Admin')
+        return true
+    else
+        return false
+    
   }
 }

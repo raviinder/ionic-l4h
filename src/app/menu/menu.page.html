@@ -8,7 +8,7 @@
     <ion-content>
         <div *ngFor="let p of pages">
             <ng-container *ngLet="(isLgdUser$ | async) as isLoggedUser" >
-                <ion-menu-toggle *ngIf=" !(isLoggedUser && p.title == 'Login') ">
+                <ion-menu-toggle *ngIf=" (!(isLoggedUser && p.title == 'Login') || !(isAdmin && p.title =='Admin')) ">
                     <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active">
                         <ion-icon [name]="p.icon" slot="start"></ion-icon>
                         <ion-label> {{p.title}}</ion-label>
