@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  currentUrl: string;
+  constructor(private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentUrl = this.router.url;
+  }
+
+  buttons = [
+    {title: 'Home', url: '/menu/home'},
+    {title: 'Events', url: '/menu/events'},
+    {title: 'Donate', url: '/menu/donate'},
+  ]
 
 }
