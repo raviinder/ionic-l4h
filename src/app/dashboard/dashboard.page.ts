@@ -46,6 +46,7 @@ export class DashboardPage implements OnInit {
   }
 
   logout() {
+    this.userForm.logout()
     this.authService.logoutUser()
       .then(res => {
         console.log(res);

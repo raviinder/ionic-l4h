@@ -1,34 +1,43 @@
-import {  Role } from './../models/user';
+import {  Role ,User} from './../models/user';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from 'firebase';
+//import { User } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserFormService {
-
-  _BS = new BehaviorSubject({ title: 'RaviTest', user: {},isLogged:false});
-
-  constructor() { }
+  
+  _BS = new BehaviorSubject({ user: {},isLogged:false});
+  _val:any
+  constructor() { 
+    const user_=JSON.parse(localStorage.getItem('user'))
+    console.log('Constructor of BS',user_)
+    this._BS.next({user:user_,isLogged:false})
+   }
 
   edit(user) {
-    this._BS.next({ title: 'Edit User', user, isLogged:true });
+    console.log('EDIT called in userform service');
+    this._BS.next({user, isLogged:true });
   }
 
   create() {
-    this._BS.next({ title: 'Create User', user: null,isLogged:false });
+    console.log('CREATE called in userform service');
+    this._BS.next({user: null,isLogged:false });
   }
   logout() {
-    this._BS.next({ title: 'Logout User', user: null,isLogged:false });
+    console.log('LOGOUT called in userform service');
+    //const user_=JSON.parse(localStorage.getItem('user'))
+    this._BS.next({ user: null,isLogged:false });
   }
-
+/*
   get title$() {
     return this._BS.asObservable().pipe(
       map(uf => uf.title)
     );
   }
+  */
   get isLoggedUser$()
   {
     return this._BS.asObservable().pipe(
@@ -42,12 +51,14 @@ export class UserFormService {
   }
    get currentUserRole(): any {
      let user:any = this._BS.value.user 
+     if (user == null)
+        return 'user'
      return user.role
 }
-  get isUserAdmin$() : boolean
+  get isUserAdmin$() : boolean  
   {
     let str:String = this.currentUserRole
-    if (str === 'Admin')
+    if (str === 'Admin' || str =='superadmin')
         return true
     else
         return false

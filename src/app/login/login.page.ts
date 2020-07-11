@@ -64,7 +64,7 @@ export class LoginPage implements OnInit {
   };
   
   loginUser(value) {
-    this.userForm.create();
+   // this.userForm.create();
     this.authService.loginUser(value)
       .then(res => {
         this.errorMessage = "";
