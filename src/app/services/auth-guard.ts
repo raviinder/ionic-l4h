@@ -42,6 +42,10 @@ export class AuthGuard implements CanActivate{
             console.log('Logged User in CanActivate ' ,this.isLoggedUser)
         if(this.isLoggedUser){	
            return true;	
+        }else{
+            alert("User not authenticated, Please sign in or register first")
+            return this.router.createUrlTree(['/menu/login']);	
+
         }	
         return this.router.createUrlTree(['/menu/login']);	
         */
