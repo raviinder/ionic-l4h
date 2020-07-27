@@ -14,7 +14,7 @@ export class MenuPage implements OnInit {
   isLoggedUser: boolean;
   isLgdUser$: Observable<boolean>;
   isAdmin:boolean = false;
-  user_:User ={uid:'',displayName:'', role:'user', email:''};
+  user_:User ={uid:'',displayName:'', role:'user', email:'',isAdmin:false};
   constructor(
     private authService: AuthenticateService,
     private userForm:UserFormService
@@ -32,7 +32,7 @@ export class MenuPage implements OnInit {
           this.user_= user
          if (user != null){
            console.log(' User Value in last emit value ' ,user)
-           if (this.user_.role == 'admin' || this.user_.role =='superadmin'){
+           if (this.user_.isAdmin == true){
              this.isAdmin = true
              this.isLoggedUser = true
            //  console.log('Inside if',this.isLoggedUser)
@@ -41,10 +41,12 @@ export class MenuPage implements OnInit {
            else if (this.user_.role == 'user'){
             //console.log('Inside else  if',this.isLoggedUser)
             this.isLoggedUser = true 
+            this.isAdmin = false
            }
           }else{
             //console.log('Inside else ',this.isLoggedUser)
             this.isLoggedUser = false
+            this.isAdmin = false
           }
           
       })	  

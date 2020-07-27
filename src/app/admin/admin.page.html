@@ -5,22 +5,45 @@
   <br>
   <br>
   <br>
+<ion-item-group >
   <!-- Item as a Button -->
-<ion-item button (click)="buttonClick()">
+<ion-item button (click)="UserMgmtClick()">
   <ion-label>
     User Management
   </ion-label>
 </ion-item>
-<ion-item button (click)="buttonClick()">
+<ion-item button (click)="EventMgmtClick()">
   <ion-label>
     Event Management
   </ion-label>
-</ion-item><ion-item button (click)="buttonClick()">
+</ion-item><ion-item button (click)="DonationClick()">
   <ion-label>
     Donations Management
   </ion-label>
 </ion-item>
-
+</ion-item-group>
+<ng-container *ngIf="userMgmtclick"> 
+    <ion-list *ngFor="let user of users$ | async" >
+    <ion-item>
+      <ion-label>{{user.email}}</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="user.isAdmin"></ion-checkbox>
+    </ion-item>
+</ion-list>
+</ng-container> 
+<ng-container *ngIf="eventMgmtClick"> 
+<ion-list >
+  <ion-item>
+    <ion-label>eventMgmtClick</ion-label>
+  </ion-item>
+</ion-list>
+</ng-container> 
+<ng-container *ngIf="donationClick"> 
+  <ion-list >
+  <ion-item>
+    <ion-label>donationClick</ion-label>
+  </ion-item>
+</ion-list>
+</ng-container> 
 
 
 
@@ -28,8 +51,5 @@
 
 <ion-footer>
   <ion-toolbar color="medium">
-    <ion-title>
-      ADMIN
-    </ion-title>
   </ion-toolbar>
 </ion-footer>

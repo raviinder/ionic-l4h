@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 export class UserFormService {
   
   _BS = new BehaviorSubject({ user: {},isLogged:false});
+  _BS1 = new BehaviorSubject<User[]>([])
   _val:any
   constructor() { 
     const user_=JSON.parse(localStorage.getItem('user'))
@@ -28,16 +29,8 @@ export class UserFormService {
   }
   logout() {
     console.log('LOGOUT called in userform service');
-    //const user_=JSON.parse(localStorage.getItem('user'))
     this._BS.next({ user: null,isLogged:false });
   }
-/*
-  get title$() {
-    return this._BS.asObservable().pipe(
-      map(uf => uf.title)
-    );
-  }
-  */
   get isLoggedUser$()
   {
     return this._BS.asObservable().pipe(

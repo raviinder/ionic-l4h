@@ -5,4 +5,5 @@ export interface User {
     displayName?: string;
     role?: Role;
     email?: string;
+    isAdmin?: boolean;
 }

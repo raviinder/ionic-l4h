@@ -10,7 +10,7 @@ import { UserFormService } from './user-form.service';
 })
 export class AuthenticateService {
   userData: any;
-  currentUser:User ={uid:'',displayName:'', role:'user', email:''};
+  currentUser:User ={uid:'',displayName:'', role:'user', email:'',  isAdmin:false};
   constructor(
     private afAuth: AngularFireAuth,
     private userForm: UserFormService
@@ -22,14 +22,16 @@ export class AuthenticateService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
-        user.getIdTokenResult().then(idTokenResult => {
+        user.getIdTokenResult(true).then(idTokenResult => {
             console.log('My role is  =>',idTokenResult.claims.role)
+            console.log('idTokenResult is   =>',idTokenResult.claims)
            if (user != null){
              //Get user from firebase user and save it in current user.
              this.currentUser.email = user.email
              this.currentUser.role =  idTokenResult.claims.role
              this.currentUser.displayName = user.displayName
              this.currentUser.uid = user.uid
+             this.currentUser.isAdmin =  idTokenResult.claims.isAdmin
            // let currentUser = JSON.parse(this.userData.user);
            // currentUser.user["role"]=idTokenResult.claims.role
             localStorage.setItem('user', JSON.stringify(this.currentUser));
