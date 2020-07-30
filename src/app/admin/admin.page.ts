@@ -15,14 +15,13 @@ export class AdminPage implements OnInit {
   userMgmtclick = false
   eventMgmtClick = false
   donationClick = false
-  users$: Observable<User[]>
+  users1$: Observable<User[]>
 
   constructor(    private userservice:UserService) {
    }
 
   ngOnInit() {
-
-    this.users$ = this.userservice.users$
+    this.users1$ = this.userservice.newusers$
   }
 
 

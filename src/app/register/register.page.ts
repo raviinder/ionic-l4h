@@ -49,7 +49,7 @@ export class RegisterPage implements OnInit {
       role:'user'
     });
 
-    this.users$ = this.userService.users$;
+    //this.users$ = this.userService.newusers$;
 
     this.user$ = this.afAuth.user.pipe(
       filter(user => !!user),

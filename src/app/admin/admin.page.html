@@ -23,7 +23,7 @@
 </ion-item>
 </ion-item-group>
 <ng-container *ngIf="userMgmtclick"> 
-    <ion-list *ngFor="let user of users$ | async" >
+    <ion-list *ngFor="let user of users1$ | async" >
     <ion-item>
       <ion-label>{{user.email}}</ion-label>
       <ion-checkbox slot="end" [(ngModel)]="user.isAdmin"></ion-checkbox>
