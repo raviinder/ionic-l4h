@@ -1,5 +1,47 @@
-<app-header></app-header>
 
+
+<app-header></app-header>
+<br/> 
 <ion-content>
- 
+<img class="event-img" src="../assets/header.png" >
+
+
+  <ion-title class="event-label">
+    Events 
+  </ion-title>
+  <ion-grid style="padding-left: 76px; padding-right: 76px;">
+    <ion-row>
+      <ion-col size-lg="4" size-md="6" size-sm="12" *ngFor="let item of events">
+      <ion-card >
+
+        <img src= {{item.img}} alt="Title1"/>
+          <ion-item>
+            <ion-label>
+              {{item.label}}
+           </ion-label>
+            <ion-label style="text-align: right;">
+              {{item.date}}
+            </ion-label>
+          </ion-item>
+          <ion-card-content>
+            <p class="event-text">
+              {{item.description}}            
+            </p>
+           
+          </ion-card-content>
+          <ion-footer>
+            <ion-grid>
+              <ion-row>
+              
+                <ion-col style="text-align: center"><ion-button (click)="navigatetopage('eventdetails')" shape="round">Read more</ion-button></ion-col>
+    
+            </ion-row>
+         </ion-grid>
+          </ion-footer>
+
+      </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>
