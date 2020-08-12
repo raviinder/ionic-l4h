@@ -5,9 +5,9 @@ import { map, retry, catchError, shareReplay, switchMap } from 'rxjs/operators';
 import { Observable, throwError, timer } from 'rxjs';
 
 export type CreateUserRequest = { displayName: string, password: string, email: string, role: string };
-export type UpdateUserRequest = { uid: string } & CreateUserRequest;
+export type UpdateUserRequest = { uid: string,displayName: string, email: string, role: string};
 const CACHE_SIZE = 1;
-const REFRESH_INTERVAL = 10000;
+const REFRESH_INTERVAL = 1000000;
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +16,7 @@ export class UserService {
  // private createurl ='http://localhost:5001/fir-test-a8277/us-central1/api/createuser'
   private baseUrl = 'https://us-central1-fir-test-a8277.cloudfunctions.net/api/users'
  private createurl ='https://us-central1-fir-test-a8277.cloudfunctions.net/api/createuser'
+ private updateUsersurl = 'https://us-central1-fir-test-a8277.cloudfunctions.net/api/updateusers'
  private cache$: Observable<Array<User>>;
 
 
@@ -68,10 +69,23 @@ export class UserService {
   }
 
 
-  edit(user: UpdateUserRequest) {
-    return this.http.patch(`${this.baseUrl}/${user.uid}`, user).pipe(
-      map(_ => { })
+  updateUsers(users: User[]) {
+    //console.log ('Patch function called',this.updateUsersurl,users)
+    return this.http.patch(`${this.updateUsersurl}`, users).pipe(
+      retry(1),
+      catchError(this.handleError)
     );
+  }
+
+  edit(user: User) {
+    console.log('user ',user)
+    console.log(this.baseUrl)
+    return this.http.patch(`${this.baseUrl}/${user.uid}`, user).subscribe(data => {
+      console.log(data);
+
+     }, error => {
+      console.log(error);
+    });
   }
 
   handleError(error) {

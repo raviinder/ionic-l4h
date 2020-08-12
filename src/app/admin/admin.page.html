@@ -23,12 +23,16 @@
 </ion-item>
 </ion-item-group>
 <ng-container *ngIf="userMgmtclick"> 
-    <ion-list *ngFor="let user of users1$ | async" >
-    <ion-item>
-      <ion-label>{{user.email}}</ion-label>
-      <ion-checkbox slot="end" [(ngModel)]="user.isAdmin"></ion-checkbox>
-    </ion-item>
-</ion-list>
+  <ion-list-header>
+    <ion-label>UserName</ion-label>
+    <ion-label > Admin</ion-label>
+  </ion-list-header>
+    <ion-list  >
+      <ion-item *ngFor="let user of users1$ | async" (click)="OnUserClick(user)">
+        <ion-label>{{user.email}}</ion-label>
+        <ion-checkbox  slot="end" [(ngModel)]="user.isAdmin"></ion-checkbox>
+      </ion-item>
+    </ion-list>
 </ng-container> 
 <ng-container *ngIf="eventMgmtClick"> 
 <ion-list >
@@ -40,7 +44,7 @@
 <ng-container *ngIf="donationClick"> 
   <ion-list >
   <ion-item>
-    <ion-label>donationClick</ion-label>
+    <ion-label >donationClick</ion-label>
   </ion-item>
 </ion-list>
 </ng-container> 
@@ -49,7 +53,6 @@
 
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar color="medium">
-  </ion-toolbar>
-</ion-footer>
+<ion-footer *ngIf="userMgmtclick">
+    <ion-button Slots="start" (click)="SaveClick()">Save</ion-button>
+  </ion-footer>
