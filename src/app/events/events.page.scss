@@ -7,15 +7,24 @@
     align-content: center;
 }
 
-.event-img{
+.header-img{
     height: 250px !important;
     display:block;
     width:100%;
     
-  }
+}
+
+.event-grid{
+    padding-left: 5%; 
+    padding-right: 5%;
+ }
+ 
+.event-img{
+   height: 250px !important;
+   width:100%;
+ }
 
 .event-label{
- 
     padding: 16px;
     text-align: center;
     font-size: 36px;

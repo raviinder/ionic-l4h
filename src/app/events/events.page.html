@@ -3,22 +3,23 @@
 <app-header></app-header>
 <br/> 
 <ion-content>
-<img class="event-img" src="../assets/header.png" >
+<img class="header-img" src="../assets/header.png" >
 
 
   <ion-title class="event-label">
     Events 
   </ion-title>
-  <ion-grid style="padding-left: 76px; padding-right: 76px;">
+  <ion-grid class="event-grid">
     <ion-row>
       <ion-col size-lg="4" size-md="6" size-sm="12" *ngFor="let item of events">
       <ion-card >
 
-        <img src= {{item.img}} alt="Title1"/>
+        <img class="event-img" src= {{item.img}} alt="Title1"/>
           <ion-item>
             <ion-label>
               {{item.label}}
            </ion-label>
+          
             <ion-label style="text-align: right;">
               {{item.date}}
             </ion-label>
