@@ -5,11 +5,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import 'firebase/auth';
 import { UserFormService } from './user-form.service';
+import * as $ from 'jquery';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticateService {
   userData: any;
+  private setcustomclaimURL = 'https://us-central1-fir-test-a8277.cloudfunctions.net/api/setcustomclaim'
   currentUser:User ={uid:'',displayName:'', role:'user', email:'',  isAdmin:false};
   constructor(
     private afAuth: AngularFireAuth,
@@ -37,7 +40,7 @@ export class AuthenticateService {
             localStorage.setItem('user', JSON.stringify(this.currentUser));
             this.userForm.edit(this.currentUser)
 
-            console.log('Printing User so setting user is done ............and\n current user is  ',user,this.currentUser)
+            //console.log('Printing User so setting user is done ............and\n current user is  ',user,this.currentUser)
           }
         }
         )
@@ -106,6 +109,51 @@ export class AuthenticateService {
      return this.afAuth;
    }
   async loginWithGoogle() {
-    return await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider())
+   // return await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider())
+    // Ideally wait cloud function to set customclaims for user
+
+    const provider = new auth.GoogleAuthProvider();
+     return  await auth().signInWithPopup(provider)
+    .then((result) => {
+      // User is signed in. Get the ID token.
+      console.log('Get token after siging it ')
+      return result.user.getIdToken();
+    })
+    .then((idToken) => {
+      // Pass the ID token to the server.
+      console.log('Sending post request to update custom claim')
+      $.post(
+        this.setcustomclaimURL,
+        {
+          idToken: idToken
+        },
+        (data, status) => {
+          // This is not required. You could just wait until the token is expired
+          // and it proactively refreshes.
+          if (status == 'success' && data) {
+            const json = JSON.parse(data);
+            if (json && json.status == 'success') {
+              // Force token refresh. The token claims will contain the additional claims.
+              auth().currentUser.getIdToken(true);
+              console.log('Printing User email when setclaim is done ',auth().currentUser.email)
+              this.currentUser.email = auth().currentUser.email
+            //  this.currentUser.role =  'user'
+              this.currentUser.displayName = auth().currentUser.displayName
+              this.currentUser.uid = auth().currentUser.uid
+                localStorage.setItem('user', JSON.stringify(this.currentUser));
+                this.userForm.edit(JSON.parse(localStorage.getItem('user')))
+
+
+
+              // Now redirect to dashboard
+            }
+          }
+        }).catch((error) => {
+          console.log("Error while sending post request to server to update user" , error);
+        });
+    }).catch((error) => {
+      console.log("Error while Sign-In google user" , error);
+    });
+
   }
 }

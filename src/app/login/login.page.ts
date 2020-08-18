@@ -68,15 +68,6 @@ export class LoginPage implements OnInit {
     this.authService.loginUser(value)
       .then(res => {
         this.errorMessage = "";
-        // Login is successfull, will send GET /myrole user to figure out if User is of Which kind of role. 
-        /*  this.user$.subscribe(result => {
-            this.userForm.edit(result);
-            console.log('User has been logged in with role',result.role);
-            
-          },error => {
-            console.log(error);
-
-          });*/
           this.navCtrl.navigateForward('/menu/dashboard');
       }, err => {
         this.errorMessage = err.message;
@@ -90,14 +81,14 @@ export class LoginPage implements OnInit {
   googleLogin() {
     this.authService.loginWithGoogle()
       .then(res => {
-        console.log(res);
+        console.log(" loginWithGoogle with passed");
         this.errorMessage = "";
-        this.navCtrl.navigateForward('/dashboard');
+        this.navCtrl.navigateForward('/menu/dashboard');
       }, err => {
         this.errorMessage = err.message;
       });
   }
-
+ // This is creating a modal pop-up for user creation
   async openRegisterModal(){
     var registerPage = this.modalCtrl.create({component: RegisterPage});
     return (await registerPage).present();
