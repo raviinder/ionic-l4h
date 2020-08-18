@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { UserFormService } from '../services/user-form.service';
 import { tap } from 'rxjs/operators';
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
-
+import Stackedit from 'stackedit-js';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.page.html',
@@ -43,6 +43,25 @@ export class AdminPage implements OnInit {
     this.userMgmtclick = false
     this.eventMgmtClick = true
     this.donationClick = false
+    'Get ready for editor which will open '
+    var x = document.createElement("textarea");
+    document.body.appendChild(x);
+    const el = document.querySelector('textarea');
+    const stackedit = new Stackedit();
+  
+    // Open the iframe
+    stackedit.openFile({
+      name: 'Filename', // with an optional filename
+      content: {
+        text: el.value // and the Markdown content.
+      }
+    });
+  
+    // Listen to StackEdit events and apply the changes to the textarea.
+    stackedit.on('fileChange', (file) => {
+      el.value = file.content.text;
+    });
+
   }
   DonationClick(){
     console.log('DonationClick')
