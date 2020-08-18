@@ -1,13 +1,16 @@
 <ion-header>
   <ion-toolbar class='header'>
-    <ion-buttons class="nav-btns" slot="start">
-      <ion-menu-button></ion-menu-button>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <ion-title class="logo" ><label style="font-size:2vw;"><a routerLink="/menu/home/">LANGER FOR HUNGER</a> </label></ion-title>
+
+    <ion-buttons class="nav-btns" slot="end">
+    <ng-container *ngIf="isMobile === false"> 
       <div *ngFor='let b of buttons'>
-        <div *ngIf=" !( currentUrl === b.url ) ">
+        <div *ngIf =" !( currentUrl === b.url ) ">
           <ion-button fill="solid" color="primary" routerLink='{{ b.url }}'>{{ b.title }}</ion-button>
         </div>
       </div>
+    </ng-container>
       </ion-buttons>
-    <ion-title class="logo" slot="end"><h1><a routerLink="/menu/home/">LANGER FOR HUNGER</a> </h1></ion-title>
   </ion-toolbar>
 </ion-header>

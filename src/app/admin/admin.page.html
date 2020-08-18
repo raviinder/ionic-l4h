@@ -25,7 +25,7 @@
 <ng-container *ngIf="userMgmtclick"> 
   <ion-list-header>
     <ion-label>UserName</ion-label>
-    <ion-label > Admin</ion-label>
+    <ion-label style="text-align: right; margin-right: 5%;"> Admin</ion-label>
   </ion-list-header>
     <ion-list  >
       <ion-item *ngFor="let user of users1$ | async" (click)="OnUserClick(user)">
